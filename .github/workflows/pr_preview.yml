@@ -12,7 +12,6 @@ on:
   pull_request:
     paths:
       - '*dnsconfig.js'
-      - '*creds.json'
 
 permissions:
   contents: read
