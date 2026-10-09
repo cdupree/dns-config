@@ -9,6 +9,7 @@ name: DNSControl-Preview
 # This workflow applies to any PR that modifies dnsconfig.js or creds.json
 #
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - '*dnsconfig.js'
@@ -22,13 +23,15 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !cancelled() }}
     steps:
-      -
-        name: Checkout repo
+      - name: Checkout creds
+        env:
+          CREDS_JSON: ${{ secrets.CREDS_JSON }}
+        run: printf '%s' "$CREDS_JSON" > creds.json
+      - name: Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      -
-        name: dnscontrol preview
+      - name: dnscontrol preview
         uses: DNSControl/dnscontrol-action@71de21213d6a5792e960a03b5b3d61f8530596b8
         with:
           cmdargs: preview
