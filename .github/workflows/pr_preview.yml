@@ -27,6 +27,10 @@ jobs:
         env:
           CREDS_JSON: ${{ secrets.CREDS_JSON }}
         run: printf '%s' "$CREDS_JSON" > creds.json
+      - name: print creds
+        env:
+          CREDS_JSON: ${{ secrets.CREDS_JSON }}
+        run: printf '%s' "$CREDS_JSON"
       - name: Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
