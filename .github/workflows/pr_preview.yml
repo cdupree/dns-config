@@ -9,6 +9,7 @@ name: DNSControl-Preview
 # This workflow applies to any PR that modifies dnsconfig.js or creds.json
 #
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - '*dnsconfig.js'
